@@ -1,12 +1,11 @@
-var T = msg.payload.temperature + 273.15;
+// Extract temperature value from the payload
+var temperatureCelsius = parseFloat(msg.payload.value);
 
-var speed = msg.payload.wind_speed * 0.27778;
+// Convert temperature from Celsius to Kelvin
+var temperatureKelvin = temperatureCelsius + 273.15;
 
-var double_humidity = msg.payload.humidity_level * 2;
+// Update the payload with the converted temperature
+msg.payload.value = temperatureKelvin;
 
-msg.payload = {T,
-speed,
-double_humidity
-};
-
+// Return the modified message
 return msg;
