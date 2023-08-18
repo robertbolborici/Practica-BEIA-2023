@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Weather Information for {{ city }}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Weather Information for {{ city }} (Accessed {{ count }} times)</h1>
+
+        <!-- Create separate boxes for each weather parameter -->
+        <div class="weather-box">
+            <h3>Condition</h3>
+            <p>{{ weather_info['condition'] }}</p>
+        </div>
+
+        <div class="weather-box">
+            <h3>Temperature</h3>
+            <p>{{ weather_info['temperature'] }}</p>
+        </div>
+
+        <div class="weather-box">
+            <h3>Wind</h3>
+            <p>{{ weather_info['wind'] }}</p>
+        </div>
+
+        <div class="weather-box">
+            <h3>Humidity</h3>
+            <p>{{ weather_info['humidity'] }}</p>
+        </div>
+
+        <div class="weather-box">
+            <h3>Visibility</h3>
+            <p>{{ weather_info['visibility'] }}</p>
+        </div>
+    </div>
+</body>
+</html>

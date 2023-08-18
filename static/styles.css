@@ -1,0 +1,63 @@
+body {
+    /* Replace 'weather_background.jpg' with the filename of your background image */
+    background-image: url('weather_site.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    font-family: Arial, sans-serif;
+    color: #ffffff;
+}
+
+.container {
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 250px;
+
+     /* Center content both horizontally and vertically */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    /* Set a fixed width for the container and move it down by 40 pixels */
+    max-width: 500px; /* Adjust the width as desired */
+    margin: 60px auto; /* This will center the container horizontally and add 40px margin at the top */
+
+    /* Padding and border-radius for aesthetics */
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Center the boxes horizontally */
+}
+
+.weather-box {
+    background-color: #ffffff; /* White background color */
+    color: #000000; /* Black text color */
+    padding: 20px;
+    border-radius: 10px;
+    margin: 10px;
+    min-width: 350px; /* Adjust the width as desired */
+    max-height: 65px; /* Adjust the height as desired */
+    flex: 1;
+    display: flex; /* Use flexbox to center content vertically */
+    flex-direction: column; /* Stack content vertically */
+    justify-content: center; /* Center content vertically */
+    align-items: center; /* Center content horizontally */
+}
+
+.weather-box h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.weather-box p {
+    font-size: 12px;
+    margin: 0; /* Remove default margin to reduce extra space */
+}
+
+h1, p {
+    margin-bottom: 20px;
+}

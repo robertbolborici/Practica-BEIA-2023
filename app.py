@@ -2,7 +2,7 @@ import time
 import redis
 import requests
 from bs4 import BeautifulSoup
-from flask import Flask
+from flask import Flask, render_template
 
 app = Flask(__name__)
 cache = redis.Redis(host='redis', port=6379)
@@ -28,12 +28,17 @@ def get_weather(city):
         wind = weather_data[2] if len(weather_data) >= 3 else "N/A"
         humidity = weather_data[3] if len(weather_data) >= 4 else "N/A"
         visibility = weather_data[4] if len(weather_data) >= 5 else "N/A"
+
+        # Combine the weather description elements back into a single string
+        description = " ".join(weather_data[5:]) if len(weather_data) > 5 else "N/A"
+
         weather_info = {
             "condition": condition,
             "temperature": temperature,
             "wind": wind,
             "humidity": humidity,
             "visibility": visibility,
+            "description": description,
         }
         return weather_info
     else:
@@ -42,21 +47,14 @@ def get_weather(city):
 @app.route('/')
 def hello():
     count = get_hit_count()
-    return f'Hello World! I have been seen {count} times.\n'
+    return render_template('index.html', count=count)
 
 @app.route('/weather/<city>')
 def show_weather(city):
     count = get_hit_count()
     weather_info = get_weather(city)
     if weather_info:
-        return f'''
-            Weather information for {city} (Accessed {count} times):\n\n
-            Condition: {weather_info['condition']}\n
-            Temperature: {weather_info['temperature']}\n
-            Wind: {weather_info['wind']}\n
-            Humidity: {weather_info['humidity']}\n
-            Visibility: {weather_info['visibility']}\n
-        '''
+        return render_template('weather.html', city=city, count=count, weather_info=weather_info)
     else:
         return f"Failed to fetch weather data for {city}. Please try again later."
 
